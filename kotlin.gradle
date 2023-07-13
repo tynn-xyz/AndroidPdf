@@ -1,0 +1,10 @@
+allprojects {
+    pluginManager.with {
+        withPlugin('org.jetbrains.kotlin.android') {
+            android.kotlinOptions.jvmTarget = '1.8'
+            withPlugin('maven-publish') {
+                kotlin.explicitApi()
+            }
+        }
+    }
+}

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AndroidPdf Example</string>
+
+    <string name="btn_print_pdf">Print PDF</string>
+    <string name="btn_share_png">Share PNG</string>
+    <string name="btn_share_pdf">Share PDF</string>
+
+    <string name="cd_pdf_document">PDF Document</string>
+</resources>

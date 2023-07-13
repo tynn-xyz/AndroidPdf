@@ -1,0 +1,15 @@
+\documentclass{minimal}
+\pdftrailerid{}\pdfinfoomitdate=1
+\paperwidth=2in\paperheight=0.45in
+\usepackage[margin=0.14in]{geometry}
+\usepackage{background}
+\backgroundsetup{scale=1,angle=0,opacity=1,contents={
+\begin{tikzpicture}[remember picture,overlay]
+\path[left color=yellow!30,middle color=yellow!1,right color=white]
+(current page.south west) rectangle (current page.north east);
+\end{tikzpicture}}}
+\usepackage{hyperref}
+\hypersetup{pdfprintscaling=None}
+\begin{document}\begin{Form}
+\TextField[name=field,value=AndroidPdf,align=1,bordercolor=1 1 1]{}
+\end{Form}\end{document}

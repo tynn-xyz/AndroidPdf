@@ -1,0 +1,10 @@
+plugins {
+    alias libs.plugins.android.library
+    alias libs.plugins.android.kotlin
+    id 'maven-publish'
+}
+
+dependencies {
+    implementation libs.bundles.ktx.implementation
+    testImplementation libs.bundles.kotlin.test.implementation
+}

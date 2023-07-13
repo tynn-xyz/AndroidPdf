@@ -1,0 +1,19 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+    }
+}
+
+apply from: '../repos.gradle'
+
+dependencyResolutionManagement {
+    versionCatalogs {
+        libs.from files('../gradle/libs.versions.toml')
+    }
+}
+
+includeFlat 'api'
+include ':api:ktx'
+
+rootProject.name = 'AndroidPdf Delegate Api'

@@ -1,0 +1,63 @@
+plugins {
+    alias libs.plugins.android.application
+    alias libs.plugins.android.kotlin
+}
+
+android {
+    androidResources {
+        noCompress += 'pdf'
+    }
+
+    flavorDimensions += 'android.pdf'
+    productFlavors {
+        all {
+            applicationIdSuffix = ".$name"
+            versionNameSuffix = "+$name"
+        }
+
+        platform
+    }
+
+    buildFeatures {
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
+    }
+}
+
+dependencies {
+    implementation platform(libs.androidx.compose.bom)
+    implementation libs.bundles.example.implementation
+    implementation "$group:ktx"
+    testImplementation libs.bundles.kotlin.test.implementation
+}
+
+tasks.register('generatePdfFormAndroidAsset') {
+    final input = file 'src/aux/tex/form.tex'
+    final outputDir = file 'src/main/assets'
+    final buildDir = layout.buildDirectory.dir 'intermediates/tex'
+    final arguments = ['-file-line-error', '-halt-on-error', '-output-directory']
+    doFirst {
+        arguments.add buildDir.get()
+        buildDir.get().asFile.mkdirs()
+        3.times { i ->
+            exec {
+                executable 'pdflatex'
+                args arguments
+                if (i < 2) args += '-draftmode'
+                args += input
+            }
+        }
+        copy {
+            from buildDir
+            into outputDir
+            include '**.pdf'
+        }
+    }
+    outputs.file "$outputDir/form.pdf"
+    inputs.file input
+    group = 'build'
+    description = 'Create form.pdf asset'
+}

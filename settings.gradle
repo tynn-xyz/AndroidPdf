@@ -1,0 +1,14 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+    }
+}
+
+apply from: 'repos.gradle'
+
+includeBuild 'delegate'
+
+include 'example'
+
+rootProject.name = 'AndroidPdf'

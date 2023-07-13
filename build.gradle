@@ -1,0 +1,12 @@
+plugins {
+    alias libs.plugins.android.application apply false
+    alias libs.plugins.android.kotlin apply false
+    alias libs.plugins.project.convention
+    alias libs.plugins.versions
+}
+
+apply from: 'kotlin.gradle'
+
+tasks.named('wrapper') {
+    gradleVersion '8.2'
+}
